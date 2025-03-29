@@ -85,16 +85,16 @@ userController.slotBookByAdmin = async (req, res) => {
     }
 
     //check a slot between time period is already assigned to another user by admin.
-
     const existingBooking = await adminSlotModel.findOne({
-        date,
+        date: moment(date).startOf("day").format("YYYY/MM/DD"),
         $or: [
             {
-                startTime: { $lt: start },  
-                endTime: { $gt: end }  
+                // Case: Overlapping with an existing booking
+                startTime: { $lte: end.toDate() }, 
+                endTime: { $gte: start.toDate() }  
             }
         ]
-    });
+    });    
 
     if (existingBooking) {
         return res.status(400).json({
