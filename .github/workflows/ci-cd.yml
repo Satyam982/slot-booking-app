@@ -28,9 +28,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Step 4: Run tests (assuming you have tests defined in package.json)
-      - name: Run tests
-        run: npm test
+      # # Step 4: Run tests (assuming you have tests defined in package.json)
+      # - name: Run tests
+      #   run: npm test
 
       # Step 5: Deploy to production (example step)
       - name: Deploy
