@@ -1,0 +1,39 @@
+name: CI/CD Pipeline
+
+# Define when to trigger this workflow
+on:
+  push:
+    branches:
+      - feature/create-slot-booking-app
+  pull_request:
+    branches:
+      - feature/create-slot-booking-app
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      # Step 1: Check out the code from the repository
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Step 2: Set up Node.js (if you're using Node.js as an example)
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      # Step 3: Install dependencies (for Node.js project)
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Run tests (assuming you have tests defined in package.json)
+      - name: Run tests
+        run: npm test
+
+      # Step 5: Deploy to production (example step)
+      - name: Deploy
+        run: |
+          echo "Deploying to production..."
+          # Add your deployment commands here
